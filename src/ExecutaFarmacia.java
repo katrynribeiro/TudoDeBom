@@ -8,7 +8,6 @@ public class ExecutaFarmacia {
 
 		if (sistema1.estaConectado()) {
 			System.out.println("Conexão com o banco de dados com exito!");
-			sistema1.AtualizarClientes("Marcos André",4);
 
 		} else {
 			System.out.println("Não foi possível conectar ao Banco de Dados");
