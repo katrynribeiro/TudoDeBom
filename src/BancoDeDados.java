@@ -10,7 +10,7 @@ public class BancoDeDados {
 
 	public void conectar() {
 
-		String servidor = "jdbc:mysql://localhost/ibm";
+		String servidor = "jdbc:mysql://localhost/farmacia";
 		String usuario = "root";
 		String senha = "MySQL";
 		String driver = "com.mysql.cj.jdbc.Driver";
@@ -30,6 +30,18 @@ public class BancoDeDados {
 		} else {
 			return false;
 		}
-	}	
-	
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public java.sql.Statement getStatement() {
+		return statement;
+	}
+
+	public ResultSet getResultset() {
+		return resultset;
+	}
+
 }
