@@ -1,4 +1,5 @@
-
+package Sistema;
+import java.util.Scanner;
 public class ExecutaFarmacia {
 
 	public static void main(String[] args) {

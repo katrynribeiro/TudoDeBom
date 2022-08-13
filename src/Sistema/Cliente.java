@@ -1,4 +1,10 @@
+package Sistema;
 public class Cliente extends BancoDeDados{
+	
+	/**
+	 * Método que atualiza as informações dos clientes cadastrados.
+	 * @author Katryn
+	 */
 	
 	public void AtualizarClientes(String nome, int id) {
 		try {
@@ -9,6 +15,11 @@ public class Cliente extends BancoDeDados{
 			System.out.println("Erro: " + e.getMessage());
 		}
 	}
+	
+	/**
+	 * Método que deleta clientes cadastrados.
+	 * @author Katryn
+	 */
 	
 	public void DeleteClientes(String nome, int id) {
 		try {

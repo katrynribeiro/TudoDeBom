@@ -1,3 +1,4 @@
+package Sistema;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,19 +9,20 @@ public class BancoDeDados {
 	private java.sql.Statement statement = null;
 	private ResultSet resultset = null;
 
-	public void conectar() {
-
+	public static Connection conectar() {
+		java.sql.Connection conexao = null;
 		String servidor = "jdbc:mysql://localhost/farmacia";
 		String usuario = "root";
 		String senha = "MySQL";
 		String driver = "com.mysql.cj.jdbc.Driver";
 
 		try {
-			Class.forName(driver);
-			this.connection = DriverManager.getConnection(servidor, usuario, senha);
-			this.statement = this.connection.createStatement();
+			Class.forName(driver); 
+			conexao = DriverManager.getConnection(servidor, usuario, senha);
+			return conexao;
 		} catch (Exception e) {
 			System.out.println("Erro:" + e.getMessage());
+			return null;
 		}
 	}
 
