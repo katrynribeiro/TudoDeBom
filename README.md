@@ -2,8 +2,17 @@
 # Farmácia Tudo de Bom 
 Desafio IBM - parte 1 
 
-A loja fictícia Tudo de Bom está construindo uma nova plataforma e precisa de uma API para gerenciar as transações. Utilize suas novas habilidades com Java e SoftSkills.
-O sistema deve permitir cadastro de novos clientes, incluindo dados pessoais, dados para contato e controle de estoque.
+A Farmácia Tudo de Bom (loja fictícia) está construindo uma nova plataforma e precisa de uma API para gerenciar as transações. 
+O sistema necessita das seguintes opções:
+- Cadastro de cliente
+- Listagem de Clientes Cadastrados
+- Atualização de Cliente
+- Deletar Cliente
+- Histórico de transação entre contas
+- Controle de estoque.
+
+Devem especificar que os Medicamentos Genéricos possuem 20% de desconto. 
+
  
 
 ## Documentação da API
