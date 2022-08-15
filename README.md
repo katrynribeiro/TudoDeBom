@@ -1,6 +1,6 @@
 
 # Farmácia Tudo de Bom 
-Desafio IBM - parte 1 
+Esse Projeto faz parte do Desafio IBM - parte 1 | Desafio do Treinamento If Black, Then Code. Parceria das Empresas IBM e Gama Academy.
 
 A Farmácia Tudo de Bom (loja fictícia) está construindo uma nova plataforma e precisa de uma API para gerenciar as transações. 
 O sistema necessita das seguintes opções:
