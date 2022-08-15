@@ -1,21 +1,32 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 
 
 public class HistoricoBancoDados extends BancoDeDados {
-	private List<Carrinho> produto = new ArrayList<>();
+	private static  List<Carrinho> produtoRetorno = new ArrayList<>();
 	private static List<ConsultaHistorico> listaHistorico = new ArrayList<>();
-	
 	private static HashMap<Integer, Produto> listaProdutos = new HashMap<>();
+	private static List<String> listaCpf = new ArrayList<>();
 	private Connection connection = null;
 	private java.sql.Statement statement = null;
 	private ResultSet resultset = null;
 	 
 	
+	
+	public static List<String> getListaCpf() {
+		return listaCpf;
+	}
+	public static List<Carrinho> getProdutoRetorno() {
+		return produtoRetorno;
+	}
 	public HashMap<Integer, Produto> getListaProdutos() {
 		return listaProdutos;
 	}
@@ -26,7 +37,7 @@ public class HistoricoBancoDados extends BancoDeDados {
 		return listaHistorico;
 	}
 	
-	public void inserirInformacoes(String cpf, List<Carrinho> listaCarrinho) {
+	public void inserirInformacoes(String cpf, List<Carrinho> listaCarrinho, double valorTotal) {
 		try {
 			String query = String.format("insert into historico_transacoes (historico_cpf) values ('%s')", cpf);
 			
@@ -74,17 +85,18 @@ public void baixandoProdutos() {
 				
 				
 				
-				String meuID = resultset.getString("id_remedio");
-				String nomeP= resultset.getString("nome_remedio");
+				String meuID = resultset.getString("id_produto");
+				String nomeP= resultset.getString("nome_produto");
 				
-				String quant = resultset.getString("quantidade_remedio");
-				double valor= resultset.getDouble("valor_unitario");
+				String quant = resultset.getString("qtd_produto");
+				double valor= resultset.getDouble("valor_unit");
+				int idGenerico = resultset.getInt("generic_value");
 				int id = Integer.parseInt(meuID);
 				int quantEstoque = Integer.parseInt(quant);
 				
 				
 				
-				listaProdutos.put(id, new Produto(nomeP, quantEstoque,valor ));
+				listaProdutos.put(id, new Produto(nomeP, quantEstoque,valor, idGenerico ));
 				
 				
 				
@@ -100,7 +112,7 @@ public void baixandoProdutos() {
 			
 			for(int i = 0; i < carrinho.size(); i++) {
 				
-				String query = String.format("update remedio set quantidade_remedio = %s where id_remedio in(%s)", carrinho.get(i).getQuantidadeRestante(), carrinho.get(i).getIdProduto());
+				String query = String.format("update estoque set qtd_produto = %s where id_produto in(%s)", carrinho.get(i).getQuantidadeRestante(), carrinho.get(i).getIdProduto());
 				System.out.println(query);
 				this.statement.executeUpdate(query);
 			}
@@ -110,7 +122,7 @@ public void baixandoProdutos() {
 	}
 	
 	public void consultarHistorio() {
-try {
+		try {
 			
 			String query = "select p.id_pedido, p.historico_cpf, m.nome_cliente from historico_transacoes as p inner join cliente as m on(p.historico_cpf = m.cpf_cliente);";
 			this.resultset = this.statement.executeQuery(query);
@@ -124,9 +136,9 @@ try {
 				String cpf= resultset.getString("historico_cpf");
 				
 				String nome = resultset.getString("nome_cliente");
+				double valorTotal = resultset.getDouble("valor_total");
 				
-				
-				listaHistorico.add(new ConsultaHistorico(meuID, cpf, nome));
+				listaHistorico.add(new ConsultaHistorico(meuID, cpf, nome, valorTotal));
 				
 				
 				
@@ -137,5 +149,56 @@ try {
 			}catch(Exception e ) {
 				System.out.println("Erro"+e.getMessage());
 			}
+	}
+	
+	public void exibirDetalhesCompleto(String id) {
+		
+	}
+	
+	public void baixandoCliente() {
+		try {
+			String query = "select * from clientes";
+			this.resultset = this.statement.executeQuery(query);
+			this.statement=this.connection.createStatement();
+			
+			
+			
+			
+			while(this.resultset.next()) {
+			
+			listaCpf.add(resultset.getString("cpf_cliente"));
+			
+			
+			}
+			
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null,"erro"+e);
+		}
+		
+	}
+	
+	public void buscarCliente(String cpf) {
+		try {
+			String query = String.format("select * from clientes where cpf_cliente = '%s'", cpf);
+			this.resultset = this.statement.executeQuery(query);
+			this.statement=this.connection.createStatement();
+			
+			
+			
+			
+			while(this.resultset.next()) {
+				
+				Vendas.setNome(resultset.getString("nome_cliente"));
+				Vendas.setEmail(resultset.getString("email_cliente"));
+				
+			
+			
+			}
+			
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null,"erro"+e);
+		}
 	}
 }

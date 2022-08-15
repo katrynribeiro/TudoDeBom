@@ -12,6 +12,8 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -64,8 +66,13 @@ public class ListaDetalhesPedidos extends JInternalFrame {
 		list.setBounds(22, 38, 441, 236);
 		contentPane.add(list);
 		
-		JButton btnNewButton = new JButton("Exibi Detalhes");
-		btnNewButton.setBounds(374, 11, 89, 23);
+		JButton btnNewButton = new JButton("Exibir Detalhes");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = model.get(list.getSelectedIndex()).getIdPedido();
+			}
+		});
+		btnNewButton.setBounds(323, 11, 140, 23);
 		contentPane.add(btnNewButton);
 		
 		

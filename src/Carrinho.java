@@ -9,6 +9,7 @@ public class Carrinho {
 	private String produto;
 	private int quantidadeRestante;
 	private int quantPedido;
+	private double valorTotal;
 	private static List<Carrinho> carrinho = new  ArrayList<Carrinho>();
 	
 	
@@ -17,6 +18,17 @@ public class Carrinho {
 
 	
 	
+
+
+	public double getValorTotal() {
+		return valorTotal;
+	}
+
+
+
+
+
+
 
 
 	public String getIdProduto() {
@@ -65,13 +77,24 @@ public class Carrinho {
 	
 
 
-	public Carrinho(String cpf, String idProduto, String produto, int quantidadeRestante, int quantPedido) {
+	
+
+
+
+
+
+
+
+
+	public Carrinho(String cpf, String idProduto, String produto, int quantidadeRestante, int quantPedido,
+			double valorTotal) {
 		super();
 		this.cpf = cpf;
 		this.idProduto = idProduto;
 		this.produto = produto;
 		this.quantidadeRestante = quantidadeRestante;
 		this.quantPedido = quantPedido;
+		this.valorTotal = valorTotal;
 	}
 
 
@@ -111,7 +134,7 @@ public class Carrinho {
 	}
 
 	public String adicionandoCarrinho() {
-		carrinho.add(new Carrinho(cpf, idProduto, produto, quantidadeRestante, quantPedido));
+		carrinho.add(new Carrinho(cpf, idProduto, produto, quantidadeRestante, quantPedido, valorTotal));
 		return "Produto adicionado com sucesso!";
 	}
 	

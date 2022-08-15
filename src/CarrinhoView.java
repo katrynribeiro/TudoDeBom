@@ -22,6 +22,7 @@ public class CarrinhoView extends JInternalFrame {
 	private JPanel contentPane;
 	private static List<Carrinho> carrinho;
 	public boolean fecharJanela;
+	private static double valorTotal;
 	/**
 	 * Launch the application.
 	 */
@@ -62,6 +63,7 @@ public class CarrinhoView extends JInternalFrame {
 		
 		for (int i = 0; i < carrinho.size(); i++) {
 		     model.addElement(carrinho.get(i));
+		     valorTotal = valorTotal + carrinho.get(i).getValorTotal();
 		    
 		    
 		}
@@ -114,7 +116,7 @@ public class CarrinhoView extends JInternalFrame {
 				
 				JOptionPane.showMessageDialog(null, "Finalizando Compra...");
 				
-				bd.inserirInformacoes(carrinho.get(0).getCpf(), carrinho);
+				bd.inserirInformacoes(carrinho.get(0).getCpf(), carrinho, valorTotal);
 				bd.atualizarEstoque(carrinho);
 				JOptionPane.showMessageDialog(null, "Compra Finalizada com Sucesso.");
 				carrinho.clear();
@@ -126,14 +128,23 @@ public class CarrinhoView extends JInternalFrame {
 				vd.vendaTela();
 				
 				
+				
+				
 			}
 		});
 		btnNewButton_2.setBounds(583, 74, 150, 23);
 		contentPane.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("Valor Total: ");
+		lblNewLabel_1.setBounds(573, 403, 63, 23);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblvalorTotal = new JLabel(String.format("R$ %f", valorTotal));
+		lblvalorTotal.setBounds(630, 407, 63, 14);
+		contentPane.add(lblvalorTotal);
 	}
 
-	public static List<carrinho> getCarrinho() {
+	public static List<Carrinho> getCarrinho() {
 		return carrinho;
 	}
-
 }

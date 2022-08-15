@@ -1,6 +1,8 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,9 +25,20 @@ public class Vendas extends JInternalFrame {
 	private String textCarrinho;
 	private int quantEstoque;
 	private static String cpf;
+	private static String nome;
+	private static String email;
+	
+	private static double valor;
+	
 	
 	
 
+	public static void setNome(String nome) {
+		Vendas.nome = nome;
+	}
+	public static void setEmail(String email) {
+		Vendas.email = email;
+	}
 	public void setCpf(String cpf) {
 		Vendas.cpf = cpf;
 	}
@@ -79,16 +92,31 @@ public class Vendas extends JInternalFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ConsultasList consulta = new ConsultasList();
+				Produto consulta = new Produto();
 				
 				
 				int codigo = Integer.parseInt(textCodigoProduto.getText());
 				consulta.consultaProduto(codigo);
-				String nome = consulta.getNome();
-				quantEstoque = consulta.getQuantidadeEstoque();
-				double valor = consulta.getValor();
+				String nome = consulta.getNome_remedio();
+				quantEstoque = consulta.getQuantEstoque();
+				double valorSemDesonto = consulta.getValor_remedio();
+				int idGenerico = consulta.getFlag_generico();
+				String valorDesconto = "Não se aplica!";
+				double valorDescontoReal = 0;
 				
-				textRetorno.setText(String.format("Produto: %s | Quantidade em Estoque: %d | Valor Unitario: %.2f", nome, quantEstoque, valor));
+				if(idGenerico == 1) {
+					valorDescontoReal = valorSemDesonto * 0.80;
+					valorDesconto = String.valueOf(valorDescontoReal);
+					valor = valorDescontoReal;
+					
+					
+				}else {
+					valor = valorSemDesonto;
+				}
+				
+				
+				
+				textRetorno.setText(String.format("Produto: %s | Quantidade em Estoque: %d | Valor Unitario: %.2f | Valor com Desconto:%s ", nome, quantEstoque, valorSemDesonto, valorDesconto));
 				
 				textCarrinho = String.format("Produto: %s | Valor Unitario: %.2f", nome, valor);
 				
@@ -139,7 +167,7 @@ public class Vendas extends JInternalFrame {
 					//instancia do objeto carrinho
 					
 					
-					Carrinho carrinho = new Carrinho(textCpf.getText(), textCodigoProduto.getText(), textCarrinho , quantEstoque, pedidoQuantidade);
+					Carrinho carrinho = new Carrinho(textCpf.getText(), textCodigoProduto.getText(), textCarrinho , quantEstoque, pedidoQuantidade, valor);
 					
 					
 					// chamando função para adicionar no carrinho
@@ -176,6 +204,36 @@ public class Vendas extends JInternalFrame {
 		textRetorno.setBounds(10, 101, 459, 20);
 		contentPane.add(textRetorno);
 		textRetorno.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Buscar Cliente");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HistoricoBancoDados bd = new HistoricoBancoDados();
+				String cpfFormato = textCpf.getText().substring(0, 2) + "." + textCpf.getText().substring(3, 5) + "." + textCpf.getText().substring(6, 8) + "-" +textCpf.getText().substring(9, 10);
+				List<String> cpf = new ArrayList<String>(HistoricoBancoDados.getListaCpf());
+				boolean teste = false;
+				while(true) {
+					
+					for(int i = 0; i < cpf.size() ; i++) {
+						if(cpf.get(i).equals(cpfFormato)) {
+							bd.buscarCliente(cpfFormato);
+							teste = false;
+							break;
+						}else {
+							teste = true;
+						}
+					}
+					if(teste) {
+						JOptionPane.showMessageDialog(null, "CPF não cadastrado.");
+						break;
+					}
+				}
+				
+			}
+			
+		});
+		btnNewButton.setBounds(260, 23, 109, 23);
+		contentPane.add(btnNewButton);
 		
 		
 	 
