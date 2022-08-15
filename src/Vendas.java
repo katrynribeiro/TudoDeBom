@@ -235,7 +235,7 @@ public class Vendas extends JInternalFrame {
 		btnNewButton.setBounds(260, 23, 109, 23);
 		contentPane.add(btnNewButton);
 		
-		
+		//ultima implatação
 	 
 		
 		
