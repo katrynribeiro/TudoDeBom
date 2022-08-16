@@ -1,19 +1,9 @@
 
 # Farmácia Tudo de Bom 
-Esse Projeto faz parte do Desafio IBM - parte 1 | Desafio do Treinamento If Black, Then Code. Parceria das Empresas IBM e Gama Academy.
 
-A Farmácia Tudo de Bom (loja fictícia) está construindo uma nova plataforma e precisa de uma API para gerenciar as transações. 
-O sistema necessita das seguintes opções:
-- Cadastro de cliente
-- Listagem de Clientes Cadastrados
-- Atualização de Cliente
-- Deletar Cliente
-- Histórico de transação entre contas
-- Controle de estoque.
+Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom (loja fictícia).
 
-Devem especificar que os Medicamentos Genéricos possuem 20% de desconto. 
-
- 
+<a href="https://ibb.co/520w8m1"><img src="https://i.ibb.co/8XCt5qm/Beige-Colorful-Minimal-Flowchart-Infographic-Graph.png" alt="Beige-Colorful-Minimal-Flowchart-Infographic-Graph" border="0"></a>
 
 ## Documentação da API
 
