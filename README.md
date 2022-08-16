@@ -3,9 +3,9 @@
 </div>
 
 
-Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom (loja fictícia).
+Uma API para gerenciar transações na nova plataforma da <b>Farmácia Tudo de Bom</b> (loja fictícia).
 
-O sistem  precisa ter as seguintes opções:
+O sistema  precisa ter as seguintes opções:
 - Cadastro de Clientes
 - Listagem de Clientes
 - Atualizar Clientes
@@ -13,7 +13,7 @@ O sistem  precisa ter as seguintes opções:
 - Histórico de Transações
 - Os Medicamentos Genéricos têm 20% de desconto
 
-Esse projeto faz parte do Desafio - Parte 1 do treinamento If Black, Then Code das empresas IBM e Gama Academy.
+Esse projeto faz parte do Desafio - Parte 1 do treinamento <b>If Black, Then Code</b> das empresas <b>IBM</b> e <b>Gama Academy</b>.
 
 
 
