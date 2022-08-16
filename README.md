@@ -13,9 +13,6 @@ O sistema  precisa ter as seguintes opções:
 - Histórico de Transações
 - Os Medicamentos Genéricos têm 20% de desconto
 
-Esse projeto faz parte do Desafio - Parte 1 do treinamento <b>If Black, Then Code</b> das empresas <b>IBM</b> e <b>Gama Academy</b>.
-
-
 
 ## Documentação
 
@@ -92,3 +89,4 @@ Esse projeto é usado pelas seguintes empresas:
 - IBM
 - Gama Academy
 
+Esse projeto faz parte do treinamento <b>If Black, Then Code</b> - Desafio 1º parte <b>IBM</b> e <b>Gama Academy</b>.
