@@ -1,4 +1,4 @@
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/196298667@N04/52290521824/in/datetaken/" title="FARMÁCIA"><img src="https://live.staticflickr.com/65535/52290521824_bdf74fd6d3.jpg" width="500" height="250" alt="FARMÁCIA"></a>
+<a data-flickr-embed="true" href="" title="FARMÁCIA"><img src="https://live.staticflickr.com/65535/52290521824_bdf74fd6d3.jpg" width="500" height="250" alt="FARMÁCIA"></a>
 
 Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom (loja fictícia).
 
