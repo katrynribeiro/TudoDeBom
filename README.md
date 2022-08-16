@@ -4,6 +4,7 @@
 
 
 Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom (loja fictícia).
+
 O sistem  precisa ter as seguintes opções:
 - Cadastro de Clientes
 - Listagem de Clientes
