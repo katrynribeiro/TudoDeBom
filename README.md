@@ -35,61 +35,54 @@ Esse projeto faz parte do Desafio - Parte 1 do treinamento <b>If Black, Then Cod
 - [@luiz-lab](https://www.github.com/luiz-lab)
 
 
-## Documentação da API
+## Lista dos Endpoints
 
-#### Retorna todos os itens
+- GET  /usuarios -> Retorna uma lista de usuários
 
-```http
-  GET /api/produtos
-```
+		// Método responsável pela listagem dos clientes
+		JButton btnAlterar = new JButton("PESQUISAR");
+		btnAlterar.setBounds(153, 356, 102, 23);
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				consultar();
+			}
 
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `PESQUISAR` | `string` | **Obrigatório**. A chave da sua API |
+- GET  /usuarios/carmem -> Retorna o usuário com username carmem
 
+        // Módulo responsável pela listagem dos clientes
+        JButton btnNewButton_2 = new JButton("ATUALIZAR");
+		btnNewButton_2.setBounds(265, 356, 102, 23);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				alterar();
+			}
+- POST  /usuarios -> Cria um usuário
 
-#### Retorna um item
+        // Módulo responsável pelo cadastro dos clientes
+        JButton btnAdicionar = new JButton("CADASTRAR");
+		btnAdicionar.setBounds(41, 356, 102, 23);
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				adicionar();
+			}
+- PUT  /usuario/carmem -> Atualiza o usuário carmem
 
-```http
-  GET /api/produtos
-```
+        // Módulo responsável pela atualização do cliente
+        JButton btnNewButton_2 = new JButton("ATUALIZAR");
+		btnNewButton_2.setBounds(265, 356, 102, 23);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				alterar();
+			}
+- DELETE  /usuarios/carmem -> Remove o usuário carmem
 
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `ATUALIZAR` | `string` | **Obrigatório**. A chave da sua API |
-
-
-#### Retorna um item
-
-```http
-  PUT /api/produtos
-```
-
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `ATUALIZAR`      | `string` | **Obrigatório**. O ID do item que você quer |
-
-
-#### Retorna um item
-
-```http
-  POST /api/produtos
-```
-
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `CADASTRAR` | `string` | **Obrigatório**. A chave da sua API |
-
-```http
-  DELETE /api/produtos
-```
-
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `EXCLUIR` | `string` | **Obrigatório**. A chave da sua API |
-
-
-
+        // Módulo responsável por deletar os clientes
+        JButton btnRemover = new JButton("EXCLUIR");
+		btnRemover.setBounds(377, 356, 89, 23);
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remover();
+			}
 
 
 ## Usado por
