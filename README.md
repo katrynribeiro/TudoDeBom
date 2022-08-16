@@ -3,7 +3,8 @@
 
 Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom (loja fictícia).
 
-https://www.canva.com/design/DAFJcbkT6E0/view
+
+![fluxograma](https://i.ibb.co/520w8m1/Beige-Colorful-Minimal-Flowchart-Infographic-Graph.png)
 
 O sistema necessita das seguintes opções:
 - Cadastro de cliente
