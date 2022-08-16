@@ -34,7 +34,7 @@ Recebe dois números e retorna a sua soma.
 
 ## Autores
 
-- [@catrynribeiro](https://www.github.com/katrynribeiro) 
+- [@katrynribeiro](https://www.github.com/katrynribeiro) 
 - [@tatiramoos](https://www.github.com/tatiramoos)
 - [@eduardosilva3](https://www.github.com/eduardosilva3)
 
