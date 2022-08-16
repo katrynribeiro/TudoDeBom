@@ -1,6 +1,7 @@
 <a data-flickr-embed="true" href="" title="FARMÁCIA"><img src="https://live.staticflickr.com/65535/52290521824_bdf74fd6d3.jpg" width="500" height="250" alt="FARMÁCIA"></a>
 
 Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom (loja fictícia).
+Esse projeto faz parte do Desafio - Parte 1 do treinamento If Black, Then Code das empresas IBM e Gama Academy.
 
 
 ## Documentação
