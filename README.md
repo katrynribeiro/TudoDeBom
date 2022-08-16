@@ -1,9 +1,25 @@
-
-# Farmácia Tudo de Bom 
+# FARMÁCIA TUDO DE BOM
 
 Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom (loja fictícia).
 
-<a href="https://ibb.co/520w8m1"><img src="https://i.ibb.co/8XCt5qm/Beige-Colorful-Minimal-Flowchart-Infographic-Graph.png" alt="Beige-Colorful-Minimal-Flowchart-Infographic-Graph" border="0"></a>
+
+## Documentação
+
+[Documentação](https://link-da-documentação)
+
+
+## Licença
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+## Autores
+
+- [@katrynribeiro](https://www.github.com/katrynribeiro)
+- [@tatiramoos](https://www.github.com/tatiramoos)
+- [@eduardosilva3](https://www.github.com/eduardosilva3)
+- [@luiz-lab](https://www.github.com/luiz-lab)
+
 
 ## Documentação da API
 
@@ -30,24 +46,6 @@ Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom 
 #### add(num1, num2)
 
 Recebe dois números e retorna a sua soma.
-
-
-## Autores
-
-- [@katrynribeiro](https://www.github.com/katrynribeiro) 
-- [@tatiramoos](https://www.github.com/tatiramoos)
-- [@eduardosilva3](https://www.github.com/eduardosilva3)
-
-
-
-## Documentação
-
-[Documentação](https://link-da-documentação)
-
-
-## Licença
-
-[MIT](https://choosealicense.com/licenses/mit/)
 
 
 ## Usado por
