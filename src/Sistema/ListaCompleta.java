@@ -7,12 +7,13 @@ import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class ListaCompleta extends JInternalFrame {
-	private List<Carrinho> lista;
+	private List<String> lista;
 	/**
 	 * Launch the application.
 	 */
@@ -43,14 +44,14 @@ public class ListaCompleta extends JInternalFrame {
 
 		HistoricoBancoDados bd =  new HistoricoBancoDados();
 		lista = new ArrayList<>(bd.getProdutoRetorno());
-		DefaultListModel<Carrinho> model = new DefaultListModel<Carrinho>();
+		DefaultListModel<String> model = new DefaultListModel<String>();
 		
 		for (int i = 0; i < lista.size(); i++) {
 		     model.addElement(lista.get(i));
 		    
 		    
 		}
-		JList<Carrinho> list = new JList<Carrinho>(model);
+		JList<String> list = new JList<String>(model);
 		
 		
 		scrollPane.setViewportView(list);

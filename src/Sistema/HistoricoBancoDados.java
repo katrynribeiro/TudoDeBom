@@ -1,5 +1,6 @@
 package Sistema;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,8 +12,8 @@ import javax.swing.JOptionPane;
 
 
 
-public class HistoricoBancoDados extends BancoDeDados {
-	private static  List<Carrinho> produtoRetorno = new ArrayList<>();
+public class HistoricoBancoDados {
+	private static  List<String> produtoRetorno = new ArrayList<>();
 	private static List<ConsultaHistorico> listaHistorico = new ArrayList<>();
 	private static HashMap<Integer, Produto> listaProdutos = new HashMap<>();
 	private static List<String> listaCpf = new ArrayList<>();
@@ -25,7 +26,7 @@ public class HistoricoBancoDados extends BancoDeDados {
 	public static List<String> getListaCpf() {
 		return listaCpf;
 	}
-	public static List<Carrinho> getProdutoRetorno() {
+	public static List<String> getProdutoRetorno() {
 		return produtoRetorno;
 	}
 	public HashMap<Integer, Produto> getListaProdutos() {
@@ -38,9 +39,36 @@ public class HistoricoBancoDados extends BancoDeDados {
 		return listaHistorico;
 	}
 	
-	public void inserirInformacoes(String cpf, List<Carrinho> listaCarrinho, double valorTotal) {
+	public void conectar() {
+
+		String servidor = "jdbc:mysql://farmacia-ibm.mysql.database.azure.com:3306/ibm_farmacia?serverTimezone=UTC";
+		String usuario = "Grupo6_IBM@farmacia-ibm";
+		String senha = "group6_1234";
+		String driver = "com.mysql.cj.jdbc.Driver";
+
 		try {
-			String query = String.format("insert into historico_transacoes (historico_cpf) values ('%s')", cpf);
+			Class.forName(driver);
+			this.connection = DriverManager.getConnection(servidor, usuario, senha);
+			this.statement = this.connection.createStatement();
+		} catch (Exception e) {
+			System.out.println("Erro:" + e.getMessage());
+		}
+	}
+
+	public boolean estaConectado() {
+		if (this.connection != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
+	
+	public void inserirInformacoes(String cpf, List<Carrinho> listaCarrinho, double valorTotal) {
+		String cpfFormato = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" +cpf.substring(9, 11);
+		
+		
+		try {
+			String query = String.format("insert into historico_transacoes (historico_cpf, valor_total) values ('%s', '%.2f')", cpfFormato,valorTotal);
 			
 			this.statement.executeUpdate(query);
 			
@@ -78,7 +106,7 @@ public void baixandoProdutos() {
 		
 		try {
 			
-			String query = "select * from remedio";
+			String query = "select * from estoque";
 			this.resultset = this.statement.executeQuery(query);
 			this.statement=this.connection.createStatement();
 			
@@ -114,7 +142,7 @@ public void baixandoProdutos() {
 			for(int i = 0; i < carrinho.size(); i++) {
 				
 				String query = String.format("update estoque set qtd_produto = %s where id_produto in(%s)", carrinho.get(i).getQuantidadeRestante(), carrinho.get(i).getIdProduto());
-				System.out.println(query);
+				
 				this.statement.executeUpdate(query);
 			}
 		} catch (Exception e) {
@@ -123,9 +151,11 @@ public void baixandoProdutos() {
 	}
 	
 	public void consultarHistorio() {
+		conectar();
+		
 		try {
 			
-			String query = "select p.id_pedido, p.historico_cpf, m.nome_cliente from historico_transacoes as p inner join cliente as m on(p.historico_cpf = m.cpf_cliente);";
+			String query = "select p.id_pedido, p.historico_cpf, p.valor_total, m.nome_cliente from historico_transacoes as p inner join clientes as m on(p.historico_cpf = m.cpf_cliente);";
 			this.resultset = this.statement.executeQuery(query);
 			this.statement=this.connection.createStatement();
 			
@@ -136,10 +166,12 @@ public void baixandoProdutos() {
 				String meuID = resultset.getString("id_pedido");
 				String cpf= resultset.getString("historico_cpf");
 				
-				String nome = resultset.getString("nome_cliente");
-				double valorTotal = resultset.getDouble("valor_total");
 				
-				listaHistorico.add(new ConsultaHistorico(meuID, cpf, nome, valorTotal));
+				String nome = resultset.getString("nome_cliente");
+				
+				
+				
+				listaHistorico.add(new ConsultaHistorico(meuID, cpf, nome, resultset.getString("valor_total")));
 				
 				
 				
@@ -153,12 +185,42 @@ public void baixandoProdutos() {
 	}
 	
 	public void exibirDetalhesCompleto(String id) {
+		conectar();
+			try {
+			
+				String query = String.format("select * from pedido_%s", id);
+				this.resultset = this.statement.executeQuery(query);
+				this.statement=this.connection.createStatement();
+			
+					while(this.resultset.next()) {
+				
+				
+				
+							String meuID = resultset.getString("id_item");
+							String nomeP= resultset.getString("produto_lista");
+				
+							String item = "ID Item: "+meuID +" " + nomeP;
+				
+				
+							produtoRetorno.add(item);
+				
+				
+				
+					}
+				}catch(Exception e ) {
+				System.out.println("Erro"+e.getMessage());
+			}
 		
 	}
 	
 	public void baixandoCliente() {
 		try {
+			
+			
+			
 			String query = "select * from clientes";
+			
+			
 			this.resultset = this.statement.executeQuery(query);
 			this.statement=this.connection.createStatement();
 			
