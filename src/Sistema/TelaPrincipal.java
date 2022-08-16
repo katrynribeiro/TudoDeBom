@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLayeredPane;
@@ -23,8 +25,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.FlowLayout;
+import java.awt.CardLayout;
 
 public class TelaPrincipal extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Image img_logo = new ImageIcon(TelaPrincipal.class.getResource("Imagens/farmacia.png")).getImage().getScaledInstance(90,90,Image.SCALE_SMOOTH);
 
 	private JPanel desktop;
 
@@ -53,11 +65,13 @@ public class TelaPrincipal extends JFrame {
 		setResizable(false);
 		setBounds(100, 100, 695, 524);
 		
+		
 		JMenuBar menu = new JMenuBar();
 		setJMenuBar(menu);
 		
-		JMenu menCadastro = new JMenu("Cadastro");
-		menCadastro.setFont(new Font("Segoe UI Historic", Font.PLAIN, 13));
+		JMenu menCadastro = new JMenu("CADASTRO");
+		menCadastro.setForeground(new Color(0, 139, 139));
+		menCadastro.setFont(new Font("Dialog", Font.PLAIN, 13));
 		menu.add(menCadastro);
 		
 		JMenuItem menCadCli = new JMenuItem("Cliente");
@@ -70,18 +84,20 @@ public class TelaPrincipal extends JFrame {
 		});
 		menCadastro.add(menCadCli);
 		
-		JMenu menRelatorio = new JMenu("Relatório");
+		JMenu menRelatorio = new JMenu("HISTÓRICO");
+		menRelatorio.setForeground(new Color(0, 139, 139));
 		menRelatorio.setFont(new Font("Segoe UI Historic", Font.PLAIN, 13));
 		menu.add(menRelatorio);
 		
-		JMenuItem menRelEst = new JMenuItem("Estoque");
+		JMenuItem menRelEst = new JMenuItem("Consulta CPF");
 		menRelatorio.add(menRelEst);
 		
-		JMenuItem menHistTrans = new JMenuItem("Histórico de transações");
+		JMenuItem menHistTrans = new JMenuItem("Todos os registros");
 		menRelatorio.add(menHistTrans);
 		
-		JMenu menOpcoes = new JMenu("Opções");
-		menOpcoes.setFont(new Font("Segoe UI Historic", Font.PLAIN, 13));
+		JMenu menOpcoes = new JMenu("VENDAS");
+		menOpcoes.setForeground(new Color(0, 139, 139));
+		menOpcoes.setFont(new Font("Dialog", Font.PLAIN, 13));
 		menu.add(menOpcoes);
 		
 		JMenuItem menOpAjuda = new JMenuItem("Ajuda");
@@ -91,6 +107,7 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		menOpcoes.add(menOpAjuda);
+		
 		
 		JMenuItem menOpSair = new JMenuItem("Sair");
 		menOpSair.addActionListener(new ActionListener() {
@@ -102,10 +119,20 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		menOpcoes.add(menOpSair);
+		
+		JMenu mnNewMenu = new JMenu("MEDICAMENTOS");
+		mnNewMenu.setForeground(new Color(0, 139, 139));
+		mnNewMenu.setFont(new Font("Dialog", Font.PLAIN, 13));
+		menu.add(mnNewMenu);
 		desktop = new JPanel();
-		desktop.setBackground(new Color(102, 205, 170));
+		desktop.setBackground(new Color(0, 128, 128));
 		desktop.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(desktop);
 		desktop.setLayout(null);
+		
+		JLabel lblMenu = new JLabel("New label");
+		lblMenu.setBounds(161, 153, 250, 159);
+		desktop.add(lblMenu);
+		lblMenu.setIcon(new ImageIcon(img_logo));
 	}
 }

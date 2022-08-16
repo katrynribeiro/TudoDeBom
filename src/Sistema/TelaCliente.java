@@ -79,51 +79,51 @@ public class TelaCliente extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Clientes");
-		setBounds(100, 100, 500, 446);
+		setBounds(100, 100, 605, 446);
 		getContentPane().setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("Nome Completo: *");
-		lblNewLabel_1.setBounds(31, 164, 94, 14);
+		lblNewLabel_1.setBounds(62, 165, 130, 14);
 		getContentPane().add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Email: *");
-		lblNewLabel_2.setBounds(31, 265, 46, 14);
+		lblNewLabel_2.setBounds(62, 266, 69, 14);
 		getContentPane().add(lblNewLabel_2);
 
 		JLabel lblNewLabel_4 = new JLabel("Data de nascimento: *");
-		lblNewLabel_4.setBounds(234, 265, 110, 14);
+		lblNewLabel_4.setBounds(265, 266, 138, 14);
 		getContentPane().add(lblNewLabel_4);
 
 		txtCliNome = new JTextField();
-		txtCliNome.setBounds(31, 189, 395, 20);
+		txtCliNome.setBounds(62, 190, 395, 20);
 		getContentPane().add(txtCliNome);
 		txtCliNome.setColumns(10);
 
 		txtCliEmail = new JTextField();
-		txtCliEmail.setBounds(31, 282, 168, 20);
+		txtCliEmail.setBounds(62, 283, 168, 20);
 		getContentPane().add(txtCliEmail);
 		txtCliEmail.setColumns(10);
 
 		txtCliData = new JTextField();
-		txtCliData.setBounds(234, 282, 192, 20);
+		txtCliData.setBounds(265, 283, 192, 20);
 		getContentPane().add(txtCliData);
 		txtCliData.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("CPF: *");
-		lblNewLabel.setBounds(31, 220, 46, 14);
+		lblNewLabel.setBounds(62, 221, 81, 14);
 		getContentPane().add(lblNewLabel);
 
 		txtCliCelular = new JTextField();
-		txtCliCelular.setBounds(234, 234, 192, 20);
+		txtCliCelular.setBounds(265, 235, 192, 20);
 		getContentPane().add(txtCliCelular);
 		txtCliCelular.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("Celular: *");
-		lblNewLabel_3.setBounds(234, 220, 46, 14);
+		lblNewLabel_3.setBounds(265, 221, 100, 14);
 		getContentPane().add(lblNewLabel_3);
 
 		txtCliCPF = new JTextField();
-		txtCliCPF.setBounds(31, 234, 168, 20);
+		txtCliCPF.setBounds(62, 235, 168, 20);
 		txtCliCPF.setColumns(10);
 		getContentPane().add(txtCliCPF);
 
@@ -133,7 +133,7 @@ public class TelaCliente extends JInternalFrame {
 		 * @author Neuvani
 		 */
 		JButton btnAdicionar = new JButton("CADASTRAR");
-		btnAdicionar.setBounds(10, 355, 102, 23);
+		btnAdicionar.setBounds(41, 356, 102, 23);
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				adicionar();
@@ -148,7 +148,7 @@ public class TelaCliente extends JInternalFrame {
 		 * Botão responsável pro pesquisar os clientes (por nome)
 		 */
 		JButton btnAlterar = new JButton("PESQUISAR");
-		btnAlterar.setBounds(122, 355, 102, 23);
+		btnAlterar.setBounds(153, 356, 102, 23);
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				consultar();
@@ -162,7 +162,7 @@ public class TelaCliente extends JInternalFrame {
 		 */
 
 		JButton btnNewButton_2 = new JButton("ATUALIZAR");
-		btnNewButton_2.setBounds(234, 355, 102, 23);
+		btnNewButton_2.setBounds(265, 356, 102, 23);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alterar();
@@ -175,7 +175,7 @@ public class TelaCliente extends JInternalFrame {
 		 * Método responsável por remover um cliente cadastrado
 		 */
 		JButton btnRemover = new JButton("EXCLUIR");
-		btnRemover.setBounds(346, 355, 89, 23);
+		btnRemover.setBounds(377, 356, 89, 23);
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remover();
@@ -206,15 +206,11 @@ public class TelaCliente extends JInternalFrame {
 		getContentPane().add(label);
 
 		JLabel lblNewLabel_5 = new JLabel("* Campos obrigatórios");
-		lblNewLabel_5.setBounds(352, 330, 138, 14);
+		lblNewLabel_5.setBounds(383, 331, 138, 14);
 		getContentPane().add(lblNewLabel_5);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 142, 468, -57);
-		getContentPane().add(scrollPane);
-		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 67, 500, 87);
+		scrollPane_1.setBounds(10, 67, 585, 87);
 		getContentPane().add(scrollPane_1);
 		
 		tableClientes = new JTable();
