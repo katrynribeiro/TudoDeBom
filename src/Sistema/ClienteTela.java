@@ -29,9 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
- * 
- * Design da Tela auxiliar - Cliente2
- * 
+ * Design da Tela auxiliar - Cliente
  * @author Katryn
  * 
  */

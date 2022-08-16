@@ -39,6 +39,12 @@ import java.awt.FlowLayout;
 import java.awt.CardLayout;
 import java.awt.Image;
 
+/**
+ * JFrame responsável pela tela principal da aplicação 
+ * @author Katryn
+ * 
+ * */
+
 public class DashPrincipal extends JFrame {
 	private JPanel desktop;
 	/**

@@ -23,11 +23,13 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * JFrame responsável pela tela de login 
+ * @author Katryn 
+ * 
+ * */
 public class TelaLogin extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textUsuario;
@@ -152,3 +154,21 @@ public class TelaLogin extends JFrame {
 		}
 	}
 }
+
+/**
+ * Pra entrada, adicionar ao banco de dados: 
+ * 
+ * create table tbusuarios(
+iduser int not null auto_increment primary key,
+usuario varchar(80) not null,
+login varchar(50),
+senha varchar(15) not null
+);
+
+insert into tbusuarios
+(iduser,usuario,login,senha)
+values
+(null, "José Assis","joseassis","123456"),
+(null, "Administrador","admin","admin");
+ * 
+ * */
