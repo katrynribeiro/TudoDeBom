@@ -26,26 +26,56 @@ Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom 
 #### Retorna todos os itens
 
 ```http
-  GET /api/items
+  GET /api/produtos
 ```
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `PESQUISAR` | `string` | **Obrigatório**. A chave da sua API |
+
 
 #### Retorna um item
 
 ```http
-  GET /api/items/${id}
+  GET /api/produtos
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `ATUALIZAR` | `string` | **Obrigatório**. A chave da sua API |
+
+
+#### Retorna um item
+
+```http
+  PUT /api/produtos
 ```
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Obrigatório**. O ID do item que você quer |
+| `ATUALIZAR`      | `string` | **Obrigatório**. O ID do item que você quer |
 
-#### add(num1, num2)
 
-Recebe dois números e retorna a sua soma.
+#### Retorna um item
+
+```http
+  POST /api/produtos
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `CADASTRAR` | `string` | **Obrigatório**. A chave da sua API |
+
+```http
+  DELETE /api/produtos
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `EXCLUIR` | `string` | **Obrigatório**. A chave da sua API |
+
+
+
 
 
 ## Usado por
