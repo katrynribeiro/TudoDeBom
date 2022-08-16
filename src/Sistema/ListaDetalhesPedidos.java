@@ -54,6 +54,8 @@ public class ListaDetalhesPedidos extends JInternalFrame {
 		contentPane.add(scrollPane);
 		
 		HistoricoBancoDados bd =  new HistoricoBancoDados();
+		
+		bd.consultarHistorio();
 		lista = new ArrayList<>(bd.getListaHistorico());
 		DefaultListModel<ConsultaHistorico> model = new DefaultListModel<ConsultaHistorico>();
 		
@@ -70,7 +72,11 @@ public class ListaDetalhesPedidos extends JInternalFrame {
 		JButton btnNewButton = new JButton("Exibir Detalhes");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				HistoricoBancoDados bd = new HistoricoBancoDados();
 				String id = model.get(list.getSelectedIndex()).getIdPedido();
+				bd.exibirDetalhesCompleto(id);
+				ListaCompleta.listaCompleta();
+				
 			}
 		});
 		btnNewButton.setBounds(323, 11, 140, 23);

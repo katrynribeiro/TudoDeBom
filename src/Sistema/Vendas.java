@@ -16,6 +16,11 @@ import javax.swing.border.EmptyBorder;
 
 
 
+import javax.swing.JFormattedTextField;
+import javax.swing.JTable;
+
+
+
 public class Vendas extends JInternalFrame {
 		
 	private JPanel contentPane;
@@ -30,15 +35,18 @@ public class Vendas extends JInternalFrame {
 	private static String email;
 	
 	private static double valor;
+	private static JTextField textField_nome;
+	private static JTextField textField_email;
+	private JTextField textField_carrinho;
 	
 	
 	
 
 	public static void setNome(String nome) {
-		Vendas.nome = nome;
+		Vendas.textField_nome.setText(nome);
 	}
 	public static void setEmail(String email) {
-		Vendas.email = email;
+		Vendas.textField_email.setText(email);
 	}
 	public void setCpf(String cpf) {
 		Vendas.cpf = cpf;
@@ -63,14 +71,19 @@ public class Vendas extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public Vendas() {
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 523, 342);
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 970, 551);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNome = new JLabel("CPF do cliente: ");
+		JLabel lblNome = new JLabel("CPF do  cliente:");
 		lblNome.setBounds(10, 27, 89, 14);
 		contentPane.add(lblNome);
 		
@@ -81,11 +94,11 @@ public class Vendas extends JInternalFrame {
 		textCpf.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Codigo do Produto");
-		lblNewLabel.setBounds(10, 59, 89, 14);
+		lblNewLabel.setBounds(10, 130, 89, 14);
 		contentPane.add(lblNewLabel);
 		
 		textCodigoProduto = new JTextField();
-		textCodigoProduto.setBounds(109, 56, 86, 20);
+		textCodigoProduto.setBounds(109, 127, 86, 20);
 		contentPane.add(textCodigoProduto);
 		textCodigoProduto.setColumns(10);
 		
@@ -107,7 +120,7 @@ public class Vendas extends JInternalFrame {
 				
 				if(idGenerico == 1) {
 					valorDescontoReal = valorSemDesonto * 0.80;
-					valorDesconto = String.valueOf(valorDescontoReal);
+					valorDesconto = String.format("%.2f", valorDescontoReal);
 					valor = valorDescontoReal;
 					
 					
@@ -121,21 +134,22 @@ public class Vendas extends JInternalFrame {
 				
 				textCarrinho = String.format("Produto: %s | Valor Unitario: %.2f", nome, valor);
 				
+				
 			}
 		});
-		btnBuscar.setBounds(202, 55, 89, 23);
+		btnBuscar.setBounds(205, 126, 89, 23);
 		contentPane.add(btnBuscar);
 		
 		JLabel lblNewLabel_1 = new JLabel("Produto");
-		lblNewLabel_1.setBounds(191, 87, 46, 14);
+		lblNewLabel_1.setBounds(323, 161, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Quantidade:");
-		lblNewLabel_2.setBounds(10, 135, 60, 14);
+		lblNewLabel_2.setBounds(10, 211, 60, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		textQuantidade = new JTextField();
-		textQuantidade.setBounds(80, 132, 26, 20);
+		textQuantidade.setBounds(80, 208, 26, 20);
 		contentPane.add(textQuantidade);
 		textQuantidade.setColumns(10);
 		
@@ -173,6 +187,7 @@ public class Vendas extends JInternalFrame {
 					
 					// chamando função para adicionar no carrinho
 					String adicionar = carrinho.adicionandoCarrinho();
+					textField_carrinho.setText(String.valueOf(Carrinho.getCarrinho().size()));
 					JOptionPane.showMessageDialog(null, adicionar);
 					break;
 				}
@@ -187,7 +202,7 @@ public class Vendas extends JInternalFrame {
 				
 			}
 		});
-		btnAdicionarCarrinho.setBounds(10, 205, 149, 23);
+		btnAdicionarCarrinho.setBounds(10, 255, 149, 23);
 		contentPane.add(btnAdicionarCarrinho);
 		
 		JButton btnVerCarrinho = new JButton("Visualizar Carrinho");
@@ -198,11 +213,12 @@ public class Vendas extends JInternalFrame {
 				
 			}
 		});
-		btnVerCarrinho.setBounds(275, 205, 149, 23);
+		btnVerCarrinho.setBounds(320, 255, 149, 23);
 		contentPane.add(btnVerCarrinho);
 		
 		textRetorno = new JTextField();
-		textRetorno.setBounds(10, 101, 459, 20);
+		textRetorno.setEditable(false);
+		textRetorno.setBounds(10, 180, 638, 20);
 		contentPane.add(textRetorno);
 		textRetorno.setColumns(10);
 		
@@ -210,24 +226,31 @@ public class Vendas extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				HistoricoBancoDados bd = new HistoricoBancoDados();
-				String cpfFormato = textCpf.getText().substring(0, 2) + "." + textCpf.getText().substring(3, 5) + "." + textCpf.getText().substring(6, 8) + "-" +textCpf.getText().substring(9, 10);
+				String cpfFormato = textCpf.getText().substring(0, 3) + "." + textCpf.getText().substring(3, 6) + "." + textCpf.getText().substring(6, 9) + "-" +textCpf.getText().substring(9, 11);
+				
+				bd.conectar();
+				bd.baixandoCliente();
+				bd.baixandoProdutos();
+				
+				
 				List<String> cpf = new ArrayList<String>(HistoricoBancoDados.getListaCpf());
+				
 				boolean teste = false;
-				while(true) {
-					
-					for(int i = 0; i < cpf.size() ; i++) {
-						if(cpf.get(i).equals(cpfFormato)) {
-							bd.buscarCliente(cpfFormato);
-							teste = false;
-							break;
-						}else {
-							teste = true;
-						}
-					}
-					if(teste) {
-						JOptionPane.showMessageDialog(null, "CPF não cadastrado.");
+				for(int i =0; i < cpf.size(); i++) {
+					if(cpf.get(i).equals(cpfFormato)) {
+						
+						bd.buscarCliente(cpfFormato);
+						JLabel lblemail = new JLabel();
+						lblemail.setText(email);
+						lblemail.setBounds(53, 77, 197, 14);
+						contentPane.add(lblemail);
+						teste = true;
 						break;
 					}
+				}
+				
+				if(teste == false) {
+					JOptionPane.showMessageDialog(null, "Cliente não cadastrado!");
 				}
 				
 			}
@@ -235,6 +258,33 @@ public class Vendas extends JInternalFrame {
 		});
 		btnNewButton.setBounds(260, 23, 109, 23);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel_3 = new JLabel("Nome: ");
+		lblNewLabel_3.setBounds(10, 52, 46, 14);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("E-mail:");
+		lblNewLabel_4.setBounds(10, 77, 46, 14);
+		contentPane.add(lblNewLabel_4);
+		
+		textField_nome = new JTextField();
+		textField_nome.setEditable(false);
+		textField_nome.setBounds(46, 49, 323, 20);
+		contentPane.add(textField_nome);
+		textField_nome.setColumns(10);
+		
+		textField_email = new JTextField();
+		textField_email.setEditable(false);
+		textField_email.setBounds(46, 74, 323, 20);
+		contentPane.add(textField_email);
+		textField_email.setColumns(10);
+		
+		textField_carrinho = new JTextField();
+		textField_carrinho.setEditable(false);
+		textField_carrinho.setBounds(264, 256, 46, 20);
+		contentPane.add(textField_carrinho);
+		textField_carrinho.setColumns(10);
+		
 		
 		//ultima implatação
 	 
@@ -244,5 +294,4 @@ public class Vendas extends JInternalFrame {
 		
 		
 	}
-
 }

@@ -4,7 +4,7 @@ public class ConsultaHistorico {
 	private String idPedido;
 	private String cpf;
 	private String nome;
-	private double valorTotal;
+	private String valorTotal;
 	
 	
 
@@ -14,12 +14,12 @@ public class ConsultaHistorico {
 
 
 
-	public ConsultaHistorico(String idPedido, String cpf, String nome, double valorTotal) {
+	public ConsultaHistorico(String idPedido, String cpf, String nome, String string) {
 		super();
 		this.idPedido = idPedido;
 		this.cpf = cpf;
 		this.nome = nome;
-		this.valorTotal = valorTotal;
+		this.valorTotal = string;
 	}
 
 

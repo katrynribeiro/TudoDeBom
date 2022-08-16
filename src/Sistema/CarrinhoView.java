@@ -14,6 +14,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 
 
 
@@ -24,6 +25,7 @@ public class CarrinhoView extends JInternalFrame {
 	private static List<Carrinho> carrinho;
 	public boolean fecharJanela;
 	private static double valorTotal;
+	private JTextField textField_valorTotal;
 	/**
 	 * Launch the application.
 	 */
@@ -64,7 +66,9 @@ public class CarrinhoView extends JInternalFrame {
 		
 		for (int i = 0; i < carrinho.size(); i++) {
 		     model.addElement(carrinho.get(i));
-		     valorTotal = valorTotal + carrinho.get(i).getValorTotal();
+		     valorTotal = valorTotal + carrinho.get(i).getValorTotal() * carrinho.get(i).getQuantPedido();
+		     
+		     
 		    
 		    
 		}
@@ -102,6 +106,7 @@ public class CarrinhoView extends JInternalFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Vendas vd = new Vendas();
+				valorTotal = valorTotal * 0;
 				vd.vendaTela();
 				dispose();
 			}
@@ -136,13 +141,16 @@ public class CarrinhoView extends JInternalFrame {
 		btnNewButton_2.setBounds(583, 74, 150, 23);
 		contentPane.add(btnNewButton_2);
 		
-		JLabel lblNewLabel_1 = new JLabel("Valor Total: ");
-		lblNewLabel_1.setBounds(573, 403, 63, 23);
+		JLabel lblNewLabel_1 = new JLabel("Valor Total: R$ ");
+		lblNewLabel_1.setBounds(548, 402, 89, 23);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblvalorTotal = new JLabel(String.format("R$ %f", valorTotal));
-		lblvalorTotal.setBounds(630, 407, 63, 14);
-		contentPane.add(lblvalorTotal);
+		textField_valorTotal = new JTextField();
+		textField_valorTotal.setText(String.format("%.2f", valorTotal));
+		textField_valorTotal.setEditable(false);
+		textField_valorTotal.setBounds(632, 403, 86, 20);
+		contentPane.add(textField_valorTotal);
+		textField_valorTotal.setColumns(10);
 	}
 
 	public static List<Carrinho> getCarrinho() {
