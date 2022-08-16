@@ -202,8 +202,8 @@ public class ClienteTela extends JInternalFrame{
 		getContentPane().add(txtIdCli);
 		txtIdCli.setColumns(10);
 
-		JLabel label = new JLabel("New label");
-		label.setBounds(319, 39, 46, 14);
+		JLabel label = new JLabel("Pesquisar");
+		label.setBounds(319, 36, 70, 14);
 		getContentPane().add(label);
 
 		JLabel lblNewLabel_5 = new JLabel("* Campos obrigatórios");
