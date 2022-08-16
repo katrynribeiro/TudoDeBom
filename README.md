@@ -86,7 +86,5 @@ O sistema  precisa ter as seguintes opções:
 
 Esse projeto é usado pelas seguintes empresas:
 
-- IBM
-- Gama Academy
 
 Esse projeto faz parte do treinamento <b>If Black, Then Code</b> - Desafio 1º parte <b>IBM</b> e <b>Gama Academy</b>.
