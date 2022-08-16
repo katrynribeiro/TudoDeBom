@@ -130,9 +130,6 @@ public void baixandoProdutos() {
 			this.statement=this.connection.createStatement();
 			
 			while(this.resultset.next()) {
-				
-				
-				
 				String meuID = resultset.getString("id_pedido");
 				String cpf= resultset.getString("historico_cpf");
 				
@@ -140,12 +137,6 @@ public void baixandoProdutos() {
 				double valorTotal = resultset.getDouble("valor_total");
 				
 				listaHistorico.add(new ConsultaHistorico(meuID, cpf, nome, valorTotal));
-				
-				
-				
-				
-				
-				
 				}
 			}catch(Exception e ) {
 				System.out.println("Erro"+e.getMessage());

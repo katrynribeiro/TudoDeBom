@@ -38,6 +38,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
 import java.awt.Image;
+import javax.swing.JButton;
 
 /**
  * JFrame responsável pela tela principal da aplicação 
@@ -100,6 +101,11 @@ public class DashPrincipal extends JFrame {
 		paneMenu.setBackground(new Color(47, 79, 79));
 		paneMenu.setBounds(0, 0, 293, 475);
 		contentPane.add(paneMenu);
+		
+		ClienteTela telaCliente = new ClienteTela();
+		ListaCompleta listaCompleta = new ListaCompleta();
+		ListaDetalhesPedidos listaDetalhes = new ListaDetalhesPedidos();
+		Vendas vendas = new Vendas();
 
 		/**
 		 * Logo principal
@@ -148,7 +154,6 @@ public class DashPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem = new JMenuItem("Atualização");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ClienteTela telaCliente = new ClienteTela();
 				telaCliente.setVisible(true);
 				desktopPane.add(telaCliente);
 			}
@@ -214,7 +219,6 @@ public class DashPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Histórico");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Vendas vendas = new Vendas();
 				vendas.setVisible(true);
 				desktopPane.add(vendas);				
 			}
@@ -248,7 +252,6 @@ public class DashPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("ConsultaCPF");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListaDetalhesPedidos listaDetalhes = new ListaDetalhesPedidos();
 				listaDetalhes.setVisible(true);
 				desktopPane.add(listaDetalhes);
 			}
@@ -258,7 +261,6 @@ public class DashPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Todos os Registros");
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListaCompleta listaCompleta = new ListaCompleta();
 				listaCompleta.setVisible(true);
 				desktopPane.add(listaCompleta);
 			
@@ -304,5 +306,21 @@ public class DashPrincipal extends JFrame {
 
 		});
 		mnNewMenu_4.add(mntmNewMenuItem_5);
+		
+		JButton btnNewButton = new JButton("VOLTAR");
+		btnNewButton.setForeground(new Color(0, 128, 128));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				telaCliente.dispose();
+				listaCompleta.dispose();
+				listaDetalhes.dispose();
+				vendas.dispose();
+				
+				
+			}
+		});
+		btnNewButton.setBounds(204, 425, 79, 23);
+		paneMenu.add(btnNewButton);
 	}
 }

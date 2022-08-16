@@ -20,6 +20,8 @@ import java.sql.*;
 import javax.swing.border.LineBorder;
 import java.awt.SystemColor;
 import java.awt.List;
+
+import Sistema.BancoDeDados;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -29,12 +31,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
- * Design da Tela auxiliar - Cliente
+ * 
+ * Design da Tela auxiliar - Cliente2
+ * 
  * @author Katryn
  * 
  */
 
-public class ClienteTela extends JInternalFrame {
+@SuppressWarnings("serial")
+public class ClienteTela extends JInternalFrame{
 	private JTextField txtCliNome;
 	private JTextField txtCliEmail;
 	private JTextField txtCliData;
@@ -68,7 +73,7 @@ public class ClienteTela extends JInternalFrame {
 	public ClienteTela() {
 		conexao = BancoDeDados.conectar();
 		setBorder(null);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setNormalBounds(new Rectangle(15, 15, 465, 385));
 		getContentPane().setBackground(SystemColor.menu);
 		setMaximizable(true);
@@ -217,9 +222,11 @@ public class ClienteTela extends JInternalFrame {
 				"ID", "Nome", "Email", "CPF", "Data Nasc.", "Celular"
 			}
 		) {
+			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
 				Integer.class, String.class, String.class, String.class, String.class, String.class
 			};
+			@SuppressWarnings("rawtypes")
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
