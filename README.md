@@ -1,5 +1,6 @@
 <div align="center">
 <img src="https://user-images.githubusercontent.com/106891550/184989414-eb297f24-50da-4584-817c-5bf29741c1ab.png" width="700px"/>
+</div>
 
 
 Uma API para gerenciar transações na nova plataforma da Farmácia Tudo de Bom (loja fictícia).
