@@ -34,46 +34,52 @@ O sistema  precisa ter as seguintes opções:
 
 ## Lista dos Endpoints
 
-- GET  /usuarios -> Retorna uma lista de usuários
+- GET  /clientes -> Retorna uma lista de usuários
 
 		// Método responsável pela listagem dos clientes
-		JButton btnAlterar = new JButton("PESQUISAR");
+		private void pesquisar_cliente() {
+		String sql = "select * from clientes where nome_cliente like ?";
+		try {
+			pst = conexao.prepareStatement(sql);
+			//Passando o conteúdo da caixa de pesquisa para o '?'
+			pst.setString(1, txtIdCli.getText()+"%");
+			rs = pst.executeQuery();
+			// A linha abaixo usa biblioteca r2xml.jar para preencher a tabela
+			tableClientes.setModel(DbUtils.resultSetToTableModel(rs));
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+- GET  /clientes/carmem -> Retorna o usuário com username carmem
+
+        // Método responsável por pesquisar um cliente pelo nome
+        JButton btnAlterar = new JButton("PESQUISAR");
 		btnAlterar.setBounds(153, 356, 102, 23);
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				consultar();
 			}
+- POST  /clientes -> Cria um usuário
 
-- GET  /usuarios/carmem -> Retorna o usuário com username carmem
-
-        // Módulo responsável pela listagem dos clientes
-        JButton btnNewButton_2 = new JButton("ATUALIZAR");
-		btnNewButton_2.setBounds(265, 356, 102, 23);
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				alterar();
-			}
-- POST  /usuarios -> Cria um usuário
-
-        // Módulo responsável pelo cadastro dos clientes
+        // Método responsável pelo cadastro dos clientes
         JButton btnAdicionar = new JButton("CADASTRAR");
 		btnAdicionar.setBounds(41, 356, 102, 23);
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				adicionar();
 			}
-- PUT  /usuario/carmem -> Atualiza o usuário carmem
+- PUT  /clientes/carmem -> Atualiza o usuário carmem
 
-        // Módulo responsável pela atualização do cliente
+        // Método responsável pela atualização do cliente
         JButton btnNewButton_2 = new JButton("ATUALIZAR");
 		btnNewButton_2.setBounds(265, 356, 102, 23);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alterar();
 			}
-- DELETE  /usuarios/carmem -> Remove o usuário carmem
+- DELETE  /clientes/carmem -> Remove o usuário carmem
 
-        // Módulo responsável por deletar os clientes
+        // Método responsável por deletar os clientes
         JButton btnRemover = new JButton("EXCLUIR");
 		btnRemover.setBounds(377, 356, 89, 23);
 		btnRemover.addActionListener(new ActionListener() {
